@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser(description='')
 parser.add_argument('--save_dir', type=str, default='./tmp')
 parser.add_argument('--resume', type=str, default='./results/omni/model_best.ckpt')
 parser.add_argument("--gpu_id", type=int, default=2)
+parser.add_argument("--input_dir", type=str)
 args = parser.parse_args()
 os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
 
@@ -216,7 +217,7 @@ with gr.Blocks(css=css) as demo:
         examples = gr.Examples(
             examples=[
                 # ["./examples/youtube.mp4"], 
-                ["./examples/charades.mp4"], 
+                [args.input_dir], 
                 # ["./examples/ego4d.mp4"],
             ],
             inputs=[video_inp],
